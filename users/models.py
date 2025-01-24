@@ -17,6 +17,18 @@ class User(AbstractUser):  # Inherits from Django's default user model
     bio = models.TextField(null=True, blank=True)  # Add a bio field
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)  # Profile pic field
 
+    # Specify related_name to avoid conflict with the built-in User model
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='custom_user_set',  # Use a unique related name to avoid clash
+        blank=True,
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='custom_user_permissions_set',  # Unique related name
+        blank=True,
+    )
+
     def __str__(self):
         return self.username
 
