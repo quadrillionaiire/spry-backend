@@ -16,6 +16,9 @@ class User(AbstractUser):  # Inherits from Django's default user model
     status = models.CharField(max_length=20, default='pending')
     bio = models.TextField(null=True, blank=True)  # Add a bio field
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)  # Profile pic field
+    social_links = models.JSONField(null=True, blank=True)  # Dictionary for social media links (e.g., {'twitter': '', 'linkedin': ''})
+    friends = models.ManyToManyField('self', blank=True)  # Friends list (mutual relationship)
+
 
     # Specify related_name to avoid conflict with the built-in User model
     groups = models.ManyToManyField(

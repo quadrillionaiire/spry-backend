@@ -24,5 +24,6 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('jobs/', include('jobs.urls')),
     path('messaging/', include('messaging.urls')),
+    path('posts/', include('posts.urls')),
     path('', views.home, name='home'),  # Add this line to map the root URL
 ]
