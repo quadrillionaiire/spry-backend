@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,5 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('jobs/', include('jobs.urls')),
     path('messaging/', include('messaging.urls')),
+    path('', views.home, name='home'),  # Add this line to map the root URL
 ]
