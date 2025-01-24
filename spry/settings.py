@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'events',
     'messaging',
     'jobs',
-    'posts'
+    'posts',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+# The directory where static files will be collected
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # You can change 'staticfiles' to another name if you prefer
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

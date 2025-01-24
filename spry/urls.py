@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path('messaging/', include('messaging.urls')),
     path('posts/', include('posts.urls')),
     path('', views.home, name='home'),  # Add this line to map the root URL
+    path('', TemplateView.as_view(template_name='index.html'), name='react_frontend'),  # Serve React's frontend
 ]

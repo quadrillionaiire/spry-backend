@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, UserUpdateForm
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .models import User
 
 # Register a new user
@@ -30,3 +32,10 @@ def profile(request):
     else:
         form = UserUpdateForm(instance=request.user)
     return render(request, 'users/profile.html', {'form': form})
+
+
+@api_view(['GET'])
+def user_list(request):
+    """Return a list of all users."""
+    users = User.objects.all().values('id', 'username', 'email')  # Query all users
+    return Response(list(users))  # Return JSON response
