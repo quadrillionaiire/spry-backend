@@ -19,3 +19,12 @@ class User(AbstractUser):  # Inherits from Django's default user model
 
     def __str__(self):
         return self.username
+
+class ClassCode(models.Model):
+    code = models.CharField(max_length=8, unique=True)
+    school = models.ForeignKey(School, on_delete=models.CASCADE)
+    class_year = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.code
