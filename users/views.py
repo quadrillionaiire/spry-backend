@@ -9,12 +9,15 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST, request.FILES)  # Accepts uploaded files (e.g., profile_picture)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)  # Don't commit to the DB just yet
+            user.is_active = True  # Make sure the user is active
+            user.save()
             login(request, user)  # Log in the user automatically after registration
             return redirect('home')  # Redirect to home or another page after registration
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/register.html', {'form': form})
+
 
 # View and update user profiles
 @login_required
