@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'jobs',
     'posts',
     'rest_framework'
+    'corseheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -137,3 +139,11 @@ LOGOUT_URL = '/users/logout/'  # Redirect here to log out
 LOGIN_REDIRECT_URL = '/'  # Redirect after login (e.g., home page)
 LOGOUT_REDIRECT_URL = 'login'  # Redirect after logout
 #LOGOUT_REDIRECT_URL = '/users/login/'  # Redirect after logout
+
+# CORS Rules 
+CORS_ALLOW_ALL_ORIGINS = True  # Allows all domains to make requests (not safe for production)
+
+# For a safer approach, use:
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:19006',  # This is the React Native development server URL
+]
